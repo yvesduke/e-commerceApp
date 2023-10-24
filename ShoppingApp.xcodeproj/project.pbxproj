@@ -16,6 +16,9 @@
 		00D269312AE17AC500CC6D93 /* ShoppingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D269302AE17AC500CC6D93 /* ShoppingAppTests.swift */; };
 		00D2693B2AE17AC500CC6D93 /* ShoppingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D2693A2AE17AC500CC6D93 /* ShoppingAppUITests.swift */; };
 		00D2693D2AE17AC500CC6D93 /* ShoppingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D2693C2AE17AC500CC6D93 /* ShoppingAppUITestsLaunchTests.swift */; };
+		00D269502AE17E9300CC6D93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00D2694F2AE17E9300CC6D93 /* Localizable.strings */; };
+		00D269522AE17EB500CC6D93 /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D269512AE17EB500CC6D93 /* CacheAsyncImage.swift */; };
+		00D269542AE17ED400CC6D93 /* FeedAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D269532AE17ED400CC6D93 /* FeedAsyncImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		00D269362AE17AC500CC6D93 /* ShoppingAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppingAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00D2693A2AE17AC500CC6D93 /* ShoppingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAppUITests.swift; sourceTree = "<group>"; };
 		00D2693C2AE17AC500CC6D93 /* ShoppingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		00D2694F2AE17E9300CC6D93 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		00D269512AE17EB500CC6D93 /* CacheAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheAsyncImage.swift; sourceTree = "<group>"; };
+		00D269532AE17ED400CC6D93 /* FeedAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAsyncImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,11 @@
 		00D269192AE17AC300CC6D93 /* ShoppingApp */ = {
 			isa = PBXGroup;
 			children = (
+				00D2694D2AE17E6600CC6D93 /* Model */,
+				00D2694C2AE17E5700CC6D93 /* Network */,
+				00D2694B2AE17E4E00CC6D93 /* View */,
+				00D2694A2AE17E2E00CC6D93 /* ViewModel */,
+				00D269492AE17E2200CC6D93 /* Repository */,
 				00D2691A2AE17AC300CC6D93 /* ShoppingAppApp.swift */,
 				00D2691C2AE17AC300CC6D93 /* ContentView.swift */,
 				00D269232AE17AC500CC6D93 /* Persistence.swift */,
@@ -131,6 +142,52 @@
 				00D2693C2AE17AC500CC6D93 /* ShoppingAppUITestsLaunchTests.swift */,
 			);
 			path = ShoppingAppUITests;
+			sourceTree = "<group>";
+		};
+		00D269492AE17E2200CC6D93 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		00D2694A2AE17E2E00CC6D93 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		00D2694B2AE17E4E00CC6D93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00D2694E2AE17E7F00CC6D93 /* ImageView */,
+				00D2694F2AE17E9300CC6D93 /* Localizable.strings */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00D2694C2AE17E5700CC6D93 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		00D2694D2AE17E6600CC6D93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		00D2694E2AE17E7F00CC6D93 /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				00D269512AE17EB500CC6D93 /* CacheAsyncImage.swift */,
+				00D269532AE17ED400CC6D93 /* FeedAsyncImageView.swift */,
+			);
+			path = ImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00D269222AE17AC500CC6D93 /* Preview Assets.xcassets in Resources */,
+				00D269502AE17E9300CC6D93 /* Localizable.strings in Resources */,
 				00D2691F2AE17AC500CC6D93 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +322,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00D269242AE17AC500CC6D93 /* Persistence.swift in Sources */,
+				00D269522AE17EB500CC6D93 /* CacheAsyncImage.swift in Sources */,
 				00D269272AE17AC500CC6D93 /* ShoppingApp.xcdatamodeld in Sources */,
+				00D269542AE17ED400CC6D93 /* FeedAsyncImageView.swift in Sources */,
 				00D2691D2AE17AC300CC6D93 /* ContentView.swift in Sources */,
 				00D2691B2AE17AC300CC6D93 /* ShoppingAppApp.swift in Sources */,
 			);
