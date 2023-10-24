@@ -16,27 +16,52 @@ struct AuthUIView: View {
     
     var body: some View {
         NavigationStack {
-            VStack{
+            VStack {
                 Text(NSLocalizedString("Register_Title", comment: ""))
-                    .font(.title).foregroundColor(.purple)
-                    .font(.system(size: 120))
+                    .font(.bold(.largeTitle)()).foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
+//                    .font(.bold(.largeTitle)()).foregroundColor(.init(uiColor: UIColor(red: 0.66, green: 0.61, blue: 0.99, alpha: 1.00)))
+                    .font(.system(size: 180))
+//                    .lineLimit(.max)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
                     .padding(50)
                 HStack {
                     Text(NSLocalizedString("Register_Sub_Title", comment: ""))
-                    Button("Login") {
-                       print("login button tapped")
+                        .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
+                        .font(.system(size: 15))
+//                    Button("Login") {
+//                       print("login button tapped")
+//                    }.font(.largeTitle).foregroundColor(.blue)
+                    Button(action: {
+                        print("Register Button Pressed")
+                    }) {
+                        Text("Login")
+                            .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
                     }
                 }
                 Group {
-                    // Register Text Fiels
-                    Text(NSLocalizedString("Register_Name_label", comment: ""))
-                    TextField("Aoron Loeb", text: $name)
-                    
-                    Text(NSLocalizedString("Register_Email_label", comment: ""))
-                    TextField("your_mail.com", text: $email)
-                    
-                    Text(NSLocalizedString("RRegister_Pass_label", comment: ""))
-                    TextField("*********", text: $password)
+                    VStack(alignment: .leading){
+                        // Register Text Fiels
+                        Text(NSLocalizedString("Register_Name_label", comment: ""))
+                            .font(.caption)
+                            .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
+                        TextField("Aoron Loeb", text: $name)
+                            .textFieldStyle(OvalTextFieldStyle())
+                        
+                        Text(NSLocalizedString("Register_Email_label", comment: ""))
+                            .font(.caption)
+                            .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
+                        TextField("your_mail.com", text: $email)
+                            .textFieldStyle(OvalTextFieldStyle())
+                        
+                        Text(NSLocalizedString("Register_Pass_label", comment: ""))
+                            .font(.caption)
+                            .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
+                        TextField("*********", text: $password)
+                            .textFieldStyle(OvalTextFieldStyle())
+//                        TextField("*********", text: $password).underlineTextField()
+                    }.padding()
+
                     
                     // Register Button
                     Button(action: {
