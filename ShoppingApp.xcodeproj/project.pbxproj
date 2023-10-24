@@ -12,6 +12,7 @@
 		00BBF53F2AE7FCBC00BE19ED /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BBF53E2AE7FCBC00BE19ED /* NetworkError.swift */; };
 		00BBF5412AE7FCE700BE19ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BBF5402AE7FCE700BE19ED /* NetworkManager.swift */; };
 		00BBF5432AE7FE1800BE19ED /* OnlineStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BBF5422AE7FE1800BE19ED /* OnlineStore.swift */; };
+		00BBF5462AE7FEAE00BE19ED /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BBF5452AE7FEAE00BE19ED /* ProductRepository.swift */; };
 		00D2691B2AE17AC300CC6D93 /* ShoppingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D2691A2AE17AC300CC6D93 /* ShoppingAppApp.swift */; };
 		00D2691D2AE17AC300CC6D93 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D2691C2AE17AC300CC6D93 /* ContentView.swift */; };
 		00D2691F2AE17AC500CC6D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00D2691E2AE17AC500CC6D93 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		00BBF53E2AE7FCBC00BE19ED /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		00BBF5402AE7FCE700BE19ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		00BBF5422AE7FE1800BE19ED /* OnlineStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStore.swift; sourceTree = "<group>"; };
+		00BBF5452AE7FEAE00BE19ED /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
 		00D269172AE17AC300CC6D93 /* ShoppingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00D2691A2AE17AC300CC6D93 /* ShoppingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAppApp.swift; sourceTree = "<group>"; };
 		00D2691C2AE17AC300CC6D93 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		00D269492AE17E2200CC6D93 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				00BBF5452AE7FEAE00BE19ED /* ProductRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				00D2691B2AE17AC300CC6D93 /* ShoppingAppApp.swift in Sources */,
 				00BBF53D2AE7FC3000BE19ED /* ApiEndPoint.swift in Sources */,
 				00BBF5432AE7FE1800BE19ED /* OnlineStore.swift in Sources */,
+				00BBF5462AE7FEAE00BE19ED /* ProductRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
