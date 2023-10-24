@@ -43,10 +43,10 @@ extension Coloring: RawRepresentable {
     
     var rawValue: RawValue {
         switch self {
-        case .color_1 : return #colorLiteral(red: 0.18, green: 0.60, blue: 0.30, alpha: 1.00)
+        case .color_1 : return #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         case .color_2 : return #colorLiteral(red: 0.18, green: 0.60, blue: 0.30, alpha: 0.07)
-        case .color_3 : return #colorLiteral(red: 0.15, green: 0.66, blue: 0.18, alpha: 1.00)
-        case .color_4 : return #colorLiteral(red: 0.15, green: 0.66, blue: 0.18, alpha: 1.00)
+        case .color_3 : return #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        case .color_4 : return #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         }
     }
 }
