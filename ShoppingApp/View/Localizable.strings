@@ -5,3 +5,19 @@
   Created by Yves Dukuze on 19/10/2023.
   
 */
+
+"Login_Title" = "Login";
+"Login_Sub_Title" = "Sing in to Continue";
+"Enter_Email_Label" = "Please enter Email";
+"Enter_Pass_Label" = "Please enter Password";
+"Login_Button_Label" = "LOGIN";
+"Register_Title" = "Create new Account";
+"Register_Sub_Title" = "Already Registered?";
+"Register_Name_label" = "Please enter your name";
+"Register_Email_label" = "Please enter Email";
+"Register_Pass_label" = "Please enter Password";
+"Register_Button_Label" = "SIGN UP";
+"Forgot_Pass_Title_Label" = "Forgot Password";
+"Forgot_Pass_Sub_Title_Label" = "New Password";
+"Forgot_Pass_Email_Label" = "Please enter Email";
+"Forgot_Pass_Button_Label" = "SEND";

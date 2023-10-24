@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkError: Error {
     case invalidURL
+    // TODO: -- Add more Error cases !!!
 }
 
 extension NetworkError {
