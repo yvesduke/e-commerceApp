@@ -28,12 +28,6 @@ struct AuthRegisterUIView: View {
                     Text(NSLocalizedString("Register_Sub_Title", comment: ""))
                         .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
                         .font(.system(size: 15))
-//                    Button(action: {
-//                        print("Register Button Pressed")
-//                    }) {
-//                        Text("Login")
-//                            .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
-//                    }
                     NavigationLink(destination: AuthLoginUIView()) {
                           Text("Login")
                               .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
@@ -41,7 +35,6 @@ struct AuthRegisterUIView: View {
                 }
                 Group {
                     VStack(alignment: .leading){
-                        // Register Text Fiels
                         Text(NSLocalizedString("Register_Name_label", comment: ""))
                             .font(.caption)
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
@@ -59,11 +52,8 @@ struct AuthRegisterUIView: View {
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
                         TextField("*********", text: $password)
                             .textFieldStyle(OvalTextFieldStyle())
-//                        TextField("*********", text: $password).underlineTextField()
                     }.padding()
-
                     
-                    // Register Button
                     Button(action: {
                         print("Register Button Pressed")
                     }) {

@@ -22,20 +22,11 @@ struct AuthLoginUIView: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
                     .padding(50)
-//                HStack {
                     Text(NSLocalizedString("Login_Sub_Title", comment: ""))
                         .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
                         .font(.system(size: 15))
-//                    Button(action: {
-//                        print("Login Button Pressed")
-//                    }) {
-//                        Text("Login")
-//                            .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
-//                    }
-//                }
                 Group {
                     VStack(alignment: .leading){
-                        // Login Text Fiels
                         Text(NSLocalizedString("Enter_Email_Label", comment: ""))
                             .font(.caption)
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
@@ -49,8 +40,6 @@ struct AuthLoginUIView: View {
                             .textFieldStyle(OvalTextFieldStyle())
                     }.padding()
                     
-                    
-                    // Login Button
                     Button(action: {
                         print("Login Button Pressed")
                     }) {
@@ -68,21 +57,15 @@ struct AuthLoginUIView: View {
 
                     
                     HStack {
-//                        Text(NSLocalizedString("Login_Sub_Title", comment: ""))
-//                            .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
-//                            .font(.system(size: 15))
                         NavigationLink(destination: AuthForgotPassUIView()) {
                               Text("Forgot Password")
                                   .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
                         }
                     }
-                    
-                    
                 }
             }
             .padding()
             .background(Image("AuthBlankBackGround"))
-            
         }
     }
 }
