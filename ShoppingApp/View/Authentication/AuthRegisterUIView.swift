@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AuthUIView: View {
+struct AuthRegisterUIView: View {
     
     @State private var name: String = ""
     @State private var email: String = ""
@@ -15,13 +15,12 @@ struct AuthUIView: View {
     
     
     var body: some View {
+        
         NavigationStack {
             VStack {
                 Text(NSLocalizedString("Register_Title", comment: ""))
                     .font(.bold(.largeTitle)()).foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
-//                    .font(.bold(.largeTitle)()).foregroundColor(.init(uiColor: UIColor(red: 0.66, green: 0.61, blue: 0.99, alpha: 1.00)))
                     .font(.system(size: 180))
-//                    .lineLimit(.max)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
                     .padding(50)
@@ -29,14 +28,15 @@ struct AuthUIView: View {
                     Text(NSLocalizedString("Register_Sub_Title", comment: ""))
                         .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
                         .font(.system(size: 15))
-//                    Button("Login") {
-//                       print("login button tapped")
-//                    }.font(.largeTitle).foregroundColor(.blue)
-                    Button(action: {
-                        print("Register Button Pressed")
-                    }) {
-                        Text("Login")
-                            .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
+//                    Button(action: {
+//                        print("Register Button Pressed")
+//                    }) {
+//                        Text("Login")
+//                            .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
+//                    }
+                    NavigationLink(destination: AuthLoginUIView()) {
+                          Text("Login")
+                              .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
                     }
                 }
                 Group {
@@ -83,12 +83,12 @@ struct AuthUIView: View {
             .padding()
             .background(Image("AuthBlankBackGround"))
 
-        }
+        }.accentColor(.white)
     }
 }
 
-struct AuthUIView_Previews: PreviewProvider {
+struct AuthRegisterUIView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthUIView()
+        AuthRegisterUIView()
     }
 }

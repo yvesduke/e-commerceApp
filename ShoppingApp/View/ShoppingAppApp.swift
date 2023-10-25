@@ -13,7 +13,7 @@ struct ShoppingAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AuthUIView()
+            AuthRegisterUIView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
