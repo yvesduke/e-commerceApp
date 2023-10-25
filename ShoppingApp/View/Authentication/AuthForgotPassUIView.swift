@@ -50,6 +50,12 @@ struct AuthForgotPassUIView: View {
                     }
                     .background(Color.purple)
                     .cornerRadius(30)
+                
+                NavigationLink(destination: ProductsUIView()) {
+                      Text("Skip")
+                          .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
+                }.padding()
+                
             }
             .padding()
             .background(Image("AuthBlankBackGround"))
