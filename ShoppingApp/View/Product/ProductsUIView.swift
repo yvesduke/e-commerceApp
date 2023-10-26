@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ProductsUIView: View {
+
     var body: some View {
-        
+
         TabView {
-            ProductsHomeUIView().tabItem{
-                Image(systemName: "list.bullet")
-                Text("Products")
+            NavigationStack {
+                ProductsHomeUIView(viewModel: ProductViewModel())
+            }
+            .tabItem {
+                Label("Products", systemImage: "list.bullet")
             }
             .toolbarBackground(Color(red: 0.66, green: 0.61, blue: 0.99), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)

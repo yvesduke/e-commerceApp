@@ -9,7 +9,7 @@ import Foundation
 
 import SwiftUI
 
-struct FeedAsyncImageView: View {
+struct ProductAsyncImageView: View {
     
     let url: URL
     private let imageWidth = 150.0
@@ -43,8 +43,8 @@ struct FeedAsyncImageView: View {
     }
 }
 
-struct FeedAsyncImageView_Previews: PreviewProvider {
+struct ProductAsyncImageView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedAsyncImageView(url: URL(string: "https://images.unsplash.com/profile")!)
+        ProductAsyncImageView(url: URL(string: "https://images.unsplash.com/profile")!)
     }
 }

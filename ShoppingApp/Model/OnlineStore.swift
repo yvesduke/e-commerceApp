@@ -14,7 +14,8 @@ struct OnlineStore: Decodable {
 }
 
 
-struct Product: Decodable {
+struct Product: Decodable, Identifiable {
+    
     let id: Int
     let title, description: String
     let price: Int

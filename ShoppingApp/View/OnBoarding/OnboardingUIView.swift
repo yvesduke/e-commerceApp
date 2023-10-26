@@ -15,13 +15,6 @@ struct OnboardingUIView: View {
     @State private var showAuthRegister: Bool = false
         
     var body: some View {
-        
-//        NavigationStack {
-            
-            
-            
-            
-            
             VStack {
                 ZStack {
                     Image(data.backgroundImage)
@@ -58,31 +51,6 @@ struct OnboardingUIView: View {
                         )
                 })
                 .shadow(radius: 10)
-                
-                
-                
-                  
-                    
-//                    Button(action: {
-//                        // Perform Action
-//                    }){
-//                        NavigationLink(destination: AuthRegisterUIView()) {
-//                            Text("Get Started")
-//                                .font(.headline)
-//                                .foregroundColor(.white)
-//                                .padding(.horizontal, 50)
-//                                .padding(.vertical, 16)
-//                                .background(
-//                                    RoundedRectangle(cornerRadius: 20)
-//                                        .foregroundColor(Color(red: 0.66, green: 0.61, blue: 0.99))
-//                                )
-//                                .shadow(radius: 10)
-//                        }
-//                    }
-                    
-                
-
-                
                 Spacer()
             }
             .fullScreenCover(isPresented: $showAuthRegister, content: {
@@ -95,12 +63,6 @@ struct OnboardingUIView: View {
                     self.isAnimating = true
                 }
             })
-
-        
-            
-//        }.accentColor(.white)
-        
-
     }
 }
 
