@@ -25,7 +25,7 @@ struct ProductsHomeUIView: View {
                 
                 HStack {
                     // Filter Button
-                    NavigationLink(destination: FilterUIView()) {
+                    NavigationLink(destination: FilterUIView()) { //
                         //                          Text("Login")
                         Image(systemName: "slider.horizontal.3")
                             .foregroundColor(Color(.systemGray2))

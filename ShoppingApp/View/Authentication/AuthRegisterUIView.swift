@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+//import FirebaseCore
+//import FirebaseFirestore
+//import FirebaseAuth
 
 struct AuthRegisterUIView: View {
     
@@ -14,6 +17,8 @@ struct AuthRegisterUIView: View {
     @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
+    
+    @ObservedObject var vm = LoginViewModel()
     
     var body: some View {
         
@@ -39,24 +44,26 @@ struct AuthRegisterUIView: View {
                         Text(NSLocalizedString("Register_Name_label", comment: ""))
                             .font(.caption)
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
-                        TextField("Aoron Loeb", text: $name)
+                        TextField("Username", text: $name)
                             .textFieldStyle(OvalTextFieldStyle())
                         
                         Text(NSLocalizedString("Register_Email_label", comment: ""))
                             .font(.caption)
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
-                        TextField("your_mail.com", text: $email)
+                        TextField("Email", text: $email)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
                             .textFieldStyle(OvalTextFieldStyle())
                         
                         Text(NSLocalizedString("Register_Pass_label", comment: ""))
                             .font(.caption)
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
-                        TextField("*********", text: $password)
+                        SecureField("Password", text: $password)
                             .textFieldStyle(OvalTextFieldStyle())
                     }.padding()
                     
                     Button(action: {
-                        print("Register Button Pressed")
+                        vm.createNewAccount(email: email, password: password)
                     }) {
                         Text(NSLocalizedString("Register_Button_Label", comment: ""))
                             .frame(width: 120, height: 15)
@@ -85,6 +92,17 @@ struct AuthRegisterUIView: View {
 //            isPresented = false
         }
     }
+    
+//    private func createNewAccount() {
+//        FirebaseManager.shared.auth.createUser(withEmail: email, password: password){ result, err in
+//            if let err = err {
+//                print("Failed to create user:", err)
+//                return
+//            }
+//            print("Successfully created user: \(result?.user.uid ?? "")")
+//        }
+//    }
+    
 }
 
 struct AuthRegisterUIView_Previews: PreviewProvider {

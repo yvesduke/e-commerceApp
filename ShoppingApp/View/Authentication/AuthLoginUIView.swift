@@ -12,6 +12,8 @@ struct AuthLoginUIView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    @ObservedObject var vm = LoginViewModel()
+    
     var body: some View {
         
         NavigationStack {
@@ -30,18 +32,24 @@ struct AuthLoginUIView: View {
                         Text(NSLocalizedString("Enter_Email_Label", comment: ""))
                             .font(.caption)
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
-                        TextField("your_mail.com", text: $email)
+                        TextField("Email", text: $email)
+                            .keyboardType(.emailAddress)
+                            .autocapitalization(.none)
                             .textFieldStyle(OvalTextFieldStyle())
                         
                         Text(NSLocalizedString("Enter_Pass_Label", comment: ""))
                             .font(.caption)
                             .foregroundColor(Color(red: 0.49, green: 0.49, blue: 0.49))
-                        TextField("*********", text: $password)
+                        SecureField("Password", text: $password)
                             .textFieldStyle(OvalTextFieldStyle())
                     }.padding()
                     
                     Button(action: {
                         print("Login Button Pressed")
+                        
+                        //
+                        vm.loginUser(email: email, password: password)
+                        
                     }) {
                         Text(NSLocalizedString("Login_Button_Label", comment: ""))
                             .frame(width: 120, height: 15)
@@ -74,6 +82,16 @@ struct AuthLoginUIView: View {
             .background(Image("AuthBlankBackGround"))
         }
     }
+    
+//    private func loginUser() {
+//        FirebaseManager.shared.auth.signIn(withEmail: email, password: password){result, err in
+//            if let err = err {
+//                print("Failed to logn user", err)
+//                return
+//            }
+//            print("Successfully logged in as user: \(result?.user.uid ?? "")")
+//        }
+//    }
 }
 
 struct AuthLoginUIView_Previews: PreviewProvider {
