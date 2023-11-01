@@ -6,9 +6,6 @@
 //
 
 import SwiftUI
-//import FirebaseCore
-//import FirebaseFirestore
-//import FirebaseAuth
 
 struct AuthRegisterUIView: View {
     
@@ -91,18 +88,7 @@ struct AuthRegisterUIView: View {
         .onAppear {
 //            isPresented = false
         }
-    }
-    
-//    private func createNewAccount() {
-//        FirebaseManager.shared.auth.createUser(withEmail: email, password: password){ result, err in
-//            if let err = err {
-//                print("Failed to create user:", err)
-//                return
-//            }
-//            print("Successfully created user: \(result?.user.uid ?? "")")
-//        }
-//    }
-    
+    }   
 }
 
 struct AuthRegisterUIView_Previews: PreviewProvider {

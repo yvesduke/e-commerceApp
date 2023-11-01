@@ -49,8 +49,9 @@
 		00C8345E2AF046360029484A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8345D2AF046360029484A /* LoginViewModel.swift */; };
 		00C834602AF046680029484A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8345F2AF046680029484A /* User.swift */; };
 		00C834622AF0FF030029484A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C834612AF0FF030029484A /* FirebaseManager.swift */; };
+		00C834642AF157480029484A /* ProductCoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C834632AF157480029484A /* ProductCoreDataRepository.swift */; };
+		00C834662AF1C1EA0029484A /* DbCoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C834652AF1C1EA0029484A /* DbCoreDataError.swift */; };
 		00D2691B2AE17AC300CC6D93 /* ShoppingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D2691A2AE17AC300CC6D93 /* ShoppingAppApp.swift */; };
-		00D2691D2AE17AC300CC6D93 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D2691C2AE17AC300CC6D93 /* ContentView.swift */; };
 		00D2691F2AE17AC500CC6D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00D2691E2AE17AC500CC6D93 /* Assets.xcassets */; };
 		00D269222AE17AC500CC6D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00D269212AE17AC500CC6D93 /* Preview Assets.xcassets */; };
 		00D269242AE17AC500CC6D93 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D269232AE17AC500CC6D93 /* Persistence.swift */; };
@@ -112,9 +113,10 @@
 		00C8345D2AF046360029484A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		00C8345F2AF046680029484A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		00C834612AF0FF030029484A /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		00C834632AF157480029484A /* ProductCoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCoreDataRepository.swift; sourceTree = "<group>"; };
+		00C834652AF1C1EA0029484A /* DbCoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbCoreDataError.swift; sourceTree = "<group>"; };
 		00D269172AE17AC300CC6D93 /* ShoppingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00D2691A2AE17AC300CC6D93 /* ShoppingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAppApp.swift; sourceTree = "<group>"; };
-		00D2691C2AE17AC300CC6D93 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		00D2691E2AE17AC500CC6D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00D269212AE17AC500CC6D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		00D269232AE17AC500CC6D93 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -242,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				00D269232AE17AC500CC6D93 /* Persistence.swift */,
+				00C834652AF1C1EA0029484A /* DbCoreDataError.swift */,
+				00D269252AE17AC500CC6D93 /* ShoppingApp.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -345,7 +349,6 @@
 				00D2694A2AE17E2E00CC6D93 /* ViewModel */,
 				00D269492AE17E2200CC6D93 /* Repository */,
 				00D2691E2AE17AC500CC6D93 /* Assets.xcassets */,
-				00D269252AE17AC500CC6D93 /* ShoppingApp.xcdatamodeld */,
 				00D269202AE17AC500CC6D93 /* Preview Content */,
 			);
 			path = ShoppingApp;
@@ -380,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				00BBF5452AE7FEAE00BE19ED /* ProductRepository.swift */,
+				00C834632AF157480029484A /* ProductCoreDataRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -388,7 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				00BBF5472AE7FFCC00BE19ED /* ProductViewModel.swift */,
-				00BBF5492AE8009600BE19ED /* ViewState.swift */,
 				00C8345D2AF046360029484A /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
@@ -397,7 +400,7 @@
 		00D2694B2AE17E4E00CC6D93 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				00D2691C2AE17AC300CC6D93 /* ContentView.swift */,
+				00BBF5492AE8009600BE19ED /* ViewState.swift */,
 				00D2691A2AE17AC300CC6D93 /* ShoppingAppApp.swift */,
 				00BBF5522AE8025700BE19ED /* Checkout */,
 				00BBF5512AE8023200BE19ED /* Profile */,
@@ -596,6 +599,7 @@
 				00D269522AE17EB500CC6D93 /* CacheAsyncImage.swift in Sources */,
 				00BBF5412AE7FCE700BE19ED /* NetworkManager.swift in Sources */,
 				00BBF5542AE8028600BE19ED /* OnboardingUIView.swift in Sources */,
+				00C834662AF1C1EA0029484A /* DbCoreDataError.swift in Sources */,
 				00D269272AE17AC500CC6D93 /* ShoppingApp.xcdatamodeld in Sources */,
 				00BBF53B2AE7FBF000BE19ED /* Networking.swift in Sources */,
 				00BBF5482AE7FFCC00BE19ED /* ProductViewModel.swift in Sources */,
@@ -604,11 +608,11 @@
 				00C834622AF0FF030029484A /* FirebaseManager.swift in Sources */,
 				00BBF55E2AE803DD00BE19ED /* ProductCellUIView.swift in Sources */,
 				00C834602AF046680029484A /* User.swift in Sources */,
-				00D2691D2AE17AC300CC6D93 /* ContentView.swift in Sources */,
 				00BBF5842AE99CD300BE19ED /* FilterUIView.swift in Sources */,
 				00BBF54A2AE8009600BE19ED /* ViewState.swift in Sources */,
 				00BBF5642AE80CFE00BE19ED /* Styles.swift in Sources */,
 				00BBF53F2AE7FCBC00BE19ED /* NetworkError.swift in Sources */,
+				00C834642AF157480029484A /* ProductCoreDataRepository.swift in Sources */,
 				00D2691B2AE17AC300CC6D93 /* ShoppingAppApp.swift in Sources */,
 				00BBF5562AE802A300BE19ED /* ProductsUIView.swift in Sources */,
 				00BBF5682AE833D200BE19ED /* UnderlineTextFieldView.swift in Sources */,

@@ -82,16 +82,6 @@ struct AuthLoginUIView: View {
             .background(Image("AuthBlankBackGround"))
         }
     }
-    
-//    private func loginUser() {
-//        FirebaseManager.shared.auth.signIn(withEmail: email, password: password){result, err in
-//            if let err = err {
-//                print("Failed to logn user", err)
-//                return
-//            }
-//            print("Successfully logged in as user: \(result?.user.uid ?? "")")
-//        }
-//    }
 }
 
 struct AuthLoginUIView_Previews: PreviewProvider {
