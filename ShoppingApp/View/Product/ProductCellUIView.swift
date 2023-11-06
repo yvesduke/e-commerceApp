@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct ProductCellUIView: View {
-    
+
     let product: Product
-    
+    let dbProduct: ProductEntity?
+
     var body: some View {
-        
-        
         VStack {
             if let url = URL(string: product.thumbnail){
                 ProductAsyncImageView(url: url)
@@ -29,7 +28,6 @@ struct ProductCellUIView: View {
                 }
                 .font(.callout)
                 Text(product.description)
-//                    .font(.system(size: 18))
                     .font(.caption)
                     .lineLimit(6)
                     .multilineTextAlignment(.center)
@@ -38,16 +36,11 @@ struct ProductCellUIView: View {
         .background(Color(.systemGray6))
         .cornerRadius(9)
         .frame(width: 180, height: 330)
-//        .overlay(RoundedRectangle(cornerRadius: 15)
-//        .stroke(Color(red: 0.66, green: 0.61, blue: 0.99), lineWidth: 2))
     }
-    
-    
-    
-    
+
     struct ProductCellUIView_Previews: PreviewProvider {
         static var previews: some View {
-            ProductCellUIView(product: Product.getProducts()[1])
+            ProductCellUIView(product: Product.getProducts()[1], dbProduct: nil)
         }
     }
 }

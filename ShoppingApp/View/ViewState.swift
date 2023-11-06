@@ -13,23 +13,6 @@ enum ViewState: Equatable {
     case error(message: String)
     
     static func == (lhs: ViewState, rhs: ViewState) -> Bool {
-        
-//        switch (lhs, rhs) {
-//
-//        case (.load(products: let lProducts), .load(products: let rProducts)):
-//            return lProducts.count == rProducts.count
-//
-//        case (.error(message: let lMessage), .error(message: let rMessage)):
-//            return lMessage == rMessage
-//
-//        case (.error(message:  _), .load(products: _)):
-//            return false
-//
-//        case (.load(products:  _), .error(message: _)):
-//            return false
-//
-//        }
-        
         switch (lhs, rhs) {
         case let (.load(lProducts), .load(rProducts)):
             return lProducts.count == rProducts.count
@@ -43,8 +26,5 @@ enum ViewState: Equatable {
         default:
             return false
         }
-
-        
-        
     }
 }

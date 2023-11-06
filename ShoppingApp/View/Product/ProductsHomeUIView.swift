@@ -69,28 +69,17 @@ struct ProductsHomeUIView: View {
             if products.count > 0 {
                 ScrollView(.horizontal) {
                     LazyHStack {
+                        let Catproduct = viewModel.removeDuplicates(category: products)
                         
-                        // Remove duplicate value from category list
-                        var uniqueCategories: [String] {
-                                var uniqueCategoriesSet = Set<String>()
-                                var result = [String]()
-                                for product in products {
-                                    if !uniqueCategoriesSet.contains(product.category) {
-                                        uniqueCategoriesSet.insert(product.category)
-                                        result.append(product.category)
-                                    }
-                                }
-                                return result
-                            }
-                        // loop through category list to display them on the view
-                        ForEach(uniqueCategories, id: \.self) { category in
+                        ForEach(Catproduct, id: \.self) { category in
                             Text(category)
                                 .background(Color(.white))
                                 .padding(9)
                                 .foregroundColor(.gray)
                                 .overlay(RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color(red: 0.66, green: 0.61, blue: 0.99), lineWidth: 2))
+                                    .stroke(Color(red: 0.66, green: 0.61, blue: 0.99), lineWidth: 2))
                         }
+                        
                     }
                 }
                 .frame(width: 330, height: 50)
@@ -101,24 +90,36 @@ struct ProductsHomeUIView: View {
             Text(message)
         case .dbload(dbProducts: let dbProducts):
             if dbProducts.count > 0 {
-                Text("DATA category from Database")
+                
+                ScrollView(.horizontal) {
+                    LazyHStack {
+                        let Catproduct = viewModel.removeDuplicates(category: dbProducts)
+                        
+                        ForEach(Catproduct, id: \.self) { category in
+                            Text(category)
+                                .background(Color(.white))
+                                .padding(9)
+                                .foregroundColor(.gray)
+                                .overlay(RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color(red: 0.66, green: 0.61, blue: 0.99), lineWidth: 2))
+                        }
+                    }
+                }
             } else {
                 Text(NSLocalizedString("loading from Database", comment: ""))
             }
         }
     }
-    
 
     @ViewBuilder
     func productsListView()-> some View {
-        
         switch viewModel.viewState {
         case .load(products: let products) :
             if products.count > 0 {
                 ScrollView(.horizontal) {
                     LazyHStack {
                         ForEach(products) { product in
-                            ProductCellUIView(product: product)
+                            ProductCellUIView(product: product, dbProduct: nil)
                         }
                     }
                 }
@@ -129,8 +130,13 @@ struct ProductsHomeUIView: View {
             Text(message)
         case .dbload(dbProducts: let dbProducts):
             if dbProducts.count > 0 {
-                
-                Text(" DATA from Db")
+                ScrollView(.horizontal){
+                    LazyHStack {
+                        ForEach(dbProducts) { dbproduct in
+                            ProductCellUIView(product: Product.getProducts()[0], dbProduct: dbproduct )
+                        }
+                    }
+                }
                 
             } else {
                 Text(NSLocalizedString("loading from Database", comment: ""))
