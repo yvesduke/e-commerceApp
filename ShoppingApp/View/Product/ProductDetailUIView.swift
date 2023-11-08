@@ -18,7 +18,11 @@ struct ProductDetailUIView: View {
         Text("Details Product").font(.largeTitle).foregroundColor(.purple)
         VStack {
             
-            ImageGalleryView()
+//            ImageGalleryView()
+            if let imgs = product?.images {
+                ImageGalleryView(images: imgs)
+            }
+            
             
 //            if let img = product?.thumbnail {
 //                if let url = URL(string: img){

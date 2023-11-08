@@ -10,14 +10,10 @@ import SwiftUI
 
 struct ImageGalleryView: View {
     
-    let images: [String] = [
-        "https://i.dummyjson.com/data/products/1/1.jpg",
-        "https://i.dummyjson.com/data/products/1/2.jpg",
-        "https://i.dummyjson.com/data/products/1/3.jpg",
-        "https://i.dummyjson.com/data/products/1/4.jpg"
-        ]
+    let images: [String]
     
     @State private var currentIndex: Int = 0
+    
 
     var body: some View {
         
