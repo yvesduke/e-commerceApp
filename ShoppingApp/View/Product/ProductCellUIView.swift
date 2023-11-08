@@ -21,32 +21,37 @@ struct ProductCellUIView: View {
                     ProductAsyncImageView(url: url)
                         .frame(width: 90, height: 90)
                         .mask(RoundedRectangle(cornerRadius: 16))
-                        .padding(3)
+                        .padding(1)
                 } // TODO: -- Add HStack View for the free shipping
             } else if let img = dbProduct?.thumbnail {
                 if let url = URL(string: img){
                     ProductAsyncImageView(url: url)
                         .frame(width: 90, height: 90)
                         .mask(RoundedRectangle(cornerRadius: 16))
-                        .padding(3)
+                        .padding(1)
                 } 
             }
             // TODO: -- Add HStack View for the free shipping
             Divider()
-                .padding(18)
+//                .padding(18)
                 HStack{
-                    Text((product?.title ?? dbProduct?.title) ?? "")
-                    Text(""+"\(product?.price ?? Int(dbProduct?.price ?? 0))")
+                    Text((product?.title ?? dbProduct?.title) ?? "").foregroundColor(Color(.systemPurple))
+                        .lineLimit(1)
+                    Text("$"+"\(product?.price ?? Int(dbProduct?.price ?? 0))").foregroundColor(.black)
+                        .padding(.leading, 45)
                 }
+                .padding(1)
                 .font(.callout)
-            Text((product?.description ?? dbProduct?.description) ?? "")
+            Text((product?.brand ?? dbProduct?.brand) ?? "")
                     .font(.caption)
                     .lineLimit(6)
                     .multilineTextAlignment(.center)
+                    .foregroundColor(.black)
+                    .padding(1)
         }
         .background(Color(.systemGray6))
         .cornerRadius(9)
-        .frame(width: 180, height: 330)
+        .frame(width: 180, height: 450) //330
     }
 
     struct ProductCellUIView_Previews: PreviewProvider {

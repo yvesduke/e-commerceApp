@@ -16,6 +16,9 @@ struct ProductsHomeUIView: View {
     
         NavigationStack {
             VStack {
+//                ZStack {
+//                    SearchBar(text: $viewModel.searchText, viewModel: viewModel)
+//                }.padding()
 //                SearchBar(text: $viewModel.searchText, viewModel: viewModel)
 //                    .padding()
 //                ProductSearchView()
@@ -28,7 +31,7 @@ struct ProductsHomeUIView: View {
                     }
                     filterListView()
                 }
-                .padding()
+//                .padding()
 //                .searchable(text: $viewModel.searchText)
                 
                 HStack {
@@ -49,7 +52,7 @@ struct ProductsHomeUIView: View {
 //                Spacer()
                 productsListView()
                 HStack {
-                    Text("Recently Viewed")
+                    Text("Viewed")
                         .font(.title3)
                         .bold()
                         .padding(.trailing, 100)
@@ -89,7 +92,7 @@ struct ProductsHomeUIView: View {
                         
                     }
                 }
-//                .frame(width: 330, height: 50)
+                .frame(width: 330, height: 50)
             } else {
                 Text(NSLocalizedString("loading", comment: ""))
             }
@@ -157,7 +160,6 @@ struct ProductsHomeUIView: View {
                         }
                     }
                 }
-                
             } else {
                 Text(NSLocalizedString("loading from Database", comment: ""))
             }

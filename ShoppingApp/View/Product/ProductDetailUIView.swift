@@ -33,7 +33,7 @@ struct ProductDetailUIView: View {
                     Image(systemName: "heart")
                         .padding(.leading, 100)
                 }
-                Text(product?.title ?? dbProduct?.title ?? "").font(.title)
+                Text(product?.title ?? dbProduct?.title ?? "").font(.title).foregroundColor(.purple)
                 Text(product?.description ?? dbProduct?.descriptions ?? "")
                     .font(.callout)
                     .lineLimit(9)

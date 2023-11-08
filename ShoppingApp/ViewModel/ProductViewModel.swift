@@ -26,7 +26,6 @@ final class ProductViewModel {
     init(repository: ProductRepositoryContract = ProductRepository()) {
         self.productRepo = repository
     }
-    
 }
 
 extension ProductViewModel: ProductViewModelAction {
@@ -70,13 +69,6 @@ extension ProductViewModel {
         //        coreDataRepo = ProductCoreDataRepository(context: context)
         do {
             if let dbproducts = try await coreDataRepo?.getProductsFromDb() {
-                print("================================ Checks if image data are being stored and retrieved correctly by coredata context ================")
-                print("Db data retrieved succcessfully \(String(describing: dbproducts[1].images))")
-                print("=======================================================================================")
-//                DispatchQueue.main.async {
-//                    self.hasDbData = true
-//                    self.viewState = .dbload(dbProducts: dbproducts)
-//                }
                 await MainActor.run {
                     self.hasDbData = true
                     self.viewState = .dbload(dbProducts: dbproducts)
@@ -110,7 +102,6 @@ extension ProductViewModel {
     
     //TODO: -- Use generic type so both Product and dbProduct type can work
     var filteredProducts: [Product] {
-        
         guard !searchText.isEmpty else {
             return products
         }

@@ -18,7 +18,7 @@ struct ProductSearchView: View {
                 ForEach(viewModel.filteredProducts) { product in
                     ProductCellUIView(product: product, dbProduct: nil)
                 }
-                .listRowSeparator(.hidden, edges: .all)
+//                .listRowSeparator(.hidden, edges: .all)
             }
             .listStyle(.plain)
             .navigationTitle("Find your next Product")
