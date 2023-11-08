@@ -109,7 +109,6 @@ extension ProductViewModel {
             product.title.lowercased().contains(searchText.lowercased())
         }
     }
-    
 }
 
 extension ProductViewModel {

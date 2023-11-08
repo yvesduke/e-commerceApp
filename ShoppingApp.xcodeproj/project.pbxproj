@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00AD092B2AFA575100F2A120 /* ProductSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AD092A2AFA575100F2A120 /* ProductSearchView.swift */; };
 		00AD092E2AFA823900F2A120 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AD092D2AFA823900F2A120 /* ImageGalleryView.swift */; };
 		00AD09302AFA8B7A00F2A120 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AD092F2AFA8B7A00F2A120 /* test.swift */; };
 		00BBF53B2AE7FBF000BE19ED /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BBF53A2AE7FBF000BE19ED /* Networking.swift */; };
@@ -85,7 +84,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00AD092A2AFA575100F2A120 /* ProductSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchView.swift; sourceTree = "<group>"; };
 		00AD092D2AFA823900F2A120 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
 		00AD092F2AFA8B7A00F2A120 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		00BBF53A2AE7FBF000BE19ED /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -290,7 +288,6 @@
 		00BBF57F2AE9929000BE19ED /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				00AD092A2AFA575100F2A120 /* ProductSearchView.swift */,
 				00BBF57D2AE97B2200BE19ED /* SearchBar.swift */,
 			);
 			path = Search;
@@ -635,7 +632,6 @@
 				00BBF5432AE7FE1800BE19ED /* OnlineStore.swift in Sources */,
 				00BBF5702AE913B800BE19ED /* Onboarding.swift in Sources */,
 				00BBF5782AE9568600BE19ED /* ProductsFavoritesUIView.swift in Sources */,
-				00AD092B2AFA575100F2A120 /* ProductSearchView.swift in Sources */,
 				00BBF57A2AE956A700BE19ED /* ProductsProfileUIView.swift in Sources */,
 				00BBF5462AE7FEAE00BE19ED /* ProductRepository.swift in Sources */,
 				00AD092E2AFA823900F2A120 /* ImageGalleryView.swift in Sources */,

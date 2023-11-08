@@ -15,55 +15,44 @@ struct ProductsHomeUIView: View {
     var body: some View {
     
         NavigationStack {
-            VStack {
-//                ZStack {
-//                    SearchBar(text: $viewModel.searchText, viewModel: viewModel)
-//                }.padding()
-//                SearchBar(text: $viewModel.searchText, viewModel: viewModel)
-//                    .padding()
-//                ProductSearchView()
+            ZStack(alignment: .topLeading) {
                 
-                HStack {
-                    NavigationLink(destination: FilterUIView()) {
-                        Image(systemName: "slider.horizontal.3")
-                            .foregroundColor(Color(.systemGray2))
-                            .font(.system(size: 30))
+                VStack {
+                    HStack {
+                        NavigationLink(destination: FilterUIView()) {
+                            Image(systemName: "slider.horizontal.3")
+                                .foregroundColor(Color(.systemGray2))
+                                .font(.system(size: 30))
+                        }
+                        filterListView()
                     }
-                    filterListView()
+                    HStack {
+                        Text("Hot Sales")
+                            .font(.title3)
+                            .bold()
+                            .padding(.trailing, 100)
+                        Text("See all")
+                            .font(.title3)
+                            .foregroundColor(Color(.systemGray2))
+                            .padding(.leading, 100)
+                    }
+                    .searchable(text: .constant(""))
+                    productsListView()
+                    HStack {
+                        Text("Viewed")
+                            .font(.title3)
+                            .bold()
+                            .padding(.trailing, 100)
+                        Text("See all")
+                            .font(.title3)
+                            .foregroundColor(Color(.systemGray2))
+                            .padding(.leading, 100)
+                    }
+                    productsListView()
                 }
-//                .padding()
-//                .searchable(text: $viewModel.searchText)
-                
-                HStack {
-                    Text("Hot Sales")
-                        .font(.title3)
-                        .bold()
-//                    Spacer()
-                        .padding(.trailing, 100)
-                    Text("See all")
-                        .font(.title3)
-                        .foregroundColor(Color(.systemGray2))
-//                        .padding(.leading, 110)
-                        .padding(.leading, 100)
-
-//                    Spacer()
+                VStack {
+                    SearchBar(text: $viewModel.searchText, viewModel: viewModel)
                 }
-                .searchable(text: .constant(""))
-//                Spacer()
-                productsListView()
-                HStack {
-                    Text("Viewed")
-                        .font(.title3)
-                        .bold()
-                        .padding(.trailing, 100)
-                    Text("See all")
-                        .font(.title3)
-                        .foregroundColor(Color(.systemGray2))
-                        .padding(.leading, 100)
-//                        .padding(.leading, 110)
-                }
-                productsListView()
-
             }
             .task {
                 await viewModel.getProductList(url: ApiEndpoint.products, context: context)
@@ -150,13 +139,11 @@ struct ProductsHomeUIView: View {
                 ScrollView(.horizontal){
                     LazyHStack {
                         ForEach(dbProducts) { dbproduct in
-//                            ProductCellUIView(product: Product.getProducts()[0], dbProduct: dbproduct )
                             NavigationLink {
                                 ProductDetailUIView(product: nil, dbProduct: dbproduct, coupon: .constant(""))
                             } label: {
                                 ProductCellUIView(product: nil, dbProduct: dbproduct )
                             }
-//                            ProductCellUIView(product: nil, dbProduct: dbproduct )
                         }
                     }
                 }

@@ -11,7 +11,8 @@ struct SearchBar: View {
     
     @Binding var text: String
     @StateObject var viewModel: ProductViewModel
-        
+    @State private var isSearchResultVisible = false
+    
     var body: some View {
         
         ZStack {
@@ -24,17 +25,26 @@ struct SearchBar: View {
                 .padding(.leading, 280) // TODO: -- Use the right aproach for this one
                 .foregroundColor(.gray)
         }
+        .onTapGesture {
+            self.isSearchResultVisible.toggle()
+        }
         
-        NavigationStack {
-            List {
-                ForEach(viewModel.filteredProducts) { product in
-                    Text(product.title)
+        if isSearchResultVisible {
+            
+            NavigationStack {
+                List {
+                    ForEach(viewModel.filteredProducts) { product in
+                        NavigationLink {
+                            ProductDetailUIView(product: product, dbProduct: nil, coupon: .constant(""))
+                        } label: {
+                            Text(product.title)
+                        }
+                    }
+                    .listRowSeparator(.hidden, edges: .all)
                 }
-                .listRowSeparator(.hidden, edges: .all)
+                .listStyle(.plain)
+                .searchable(text: $viewModel.searchText)
             }
-            .listStyle(.plain)
-            .navigationTitle("Find your next Product")
-            .searchable(text: $viewModel.searchText)
         }
     }
 }

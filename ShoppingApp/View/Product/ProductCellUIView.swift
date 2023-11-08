@@ -33,7 +33,6 @@ struct ProductCellUIView: View {
             }
             // TODO: -- Add HStack View for the free shipping
             Divider()
-//                .padding(18)
                 HStack{
                     Text((product?.title ?? dbProduct?.title) ?? "").foregroundColor(Color(.systemPurple))
                         .lineLimit(1)
