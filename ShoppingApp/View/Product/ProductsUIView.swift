@@ -22,6 +22,14 @@ struct ProductsUIView: View {
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarColorScheme(.dark, for: .tabBar)
             
+            ProductSearchView().tabItem{
+                Image(systemName: "magnifyingglass")
+                Text(" Search")
+            }
+            .toolbarBackground(Color(red: 0.66, green: 0.61, blue: 0.99), for: .tabBar)
+            .toolbarBackground(.visible, for: .tabBar)
+            .toolbarColorScheme(.dark, for: .tabBar)
+            
             ProductsCartUIView().tabItem{
                 Image(systemName: "cart")
                 Text(" Cart")

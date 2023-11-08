@@ -82,7 +82,6 @@ struct AuthRegisterUIView: View {
             }
             .padding()
             .background(Image("AuthBlankBackGround"))
-
         }
         .accentColor(.white)
         .onAppear {

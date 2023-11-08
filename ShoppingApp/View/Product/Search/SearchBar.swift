@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBar: View {
     
     @Binding var text: String
+    @StateObject var viewModel: ProductViewModel
         
     var body: some View {
         
@@ -23,11 +24,23 @@ struct SearchBar: View {
                 .padding(.leading, 280) // TODO: -- Use the right aproach for this one
                 .foregroundColor(.gray)
         }
+        
+        NavigationStack {
+            List {
+                ForEach(viewModel.filteredProducts) { product in
+                    Text(product.title)
+                }
+                .listRowSeparator(.hidden, edges: .all)
+            }
+            .listStyle(.plain)
+            .navigationTitle("Find your next Product")
+            .searchable(text: $viewModel.searchText)
+        }
     }
 }
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant(""))
+        SearchBar(text: .constant(""), viewModel: ProductViewModel())
     }
 }

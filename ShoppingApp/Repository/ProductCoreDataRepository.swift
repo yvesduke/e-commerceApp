@@ -29,7 +29,7 @@ class ProductCoreDataRepository {
             entity.brand = product.brand
             entity.category = product.category
             entity.thumbnail = product.thumbnail
-            entity.images = product.images as NSObject
+            entity.images = product.images
         }
         do {
             try context.save()

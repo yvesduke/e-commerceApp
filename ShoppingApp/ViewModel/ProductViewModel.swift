@@ -15,12 +15,12 @@ protocol ProductViewModelAction: ObservableObject {
 
 final class ProductViewModel {
     private var products: [Product] = []
-//    private var productsDb:[ProductEntity] = []
     private let productRepo: ProductRepositoryContract
     private var coreDataRepo: ProductCoreDataRepository?
     private var hasDbData: Bool = false
     
     @Published var viewState: ViewState = .load(products: [])
+    @Published var searchText: String = ""
     
     init(repository: ProductRepositoryContract = ProductRepository()) {
         self.productRepo = repository
@@ -34,7 +34,6 @@ extension ProductViewModel: ProductViewModelAction {
         await getProductsFromDb(context: context)
         
         if hasDbData {
-//            await self.getProductsFromDb(context: context)
             print("============> We have database")
         } else {
             // Remote Data
@@ -49,6 +48,7 @@ extension ProductViewModel: ProductViewModelAction {
                 
                 await MainActor.run {
                     viewState = .load(products: products)
+//                    viewState = .load(products: filteredProducts)
                     hasDbData = true
                 }
             } catch {
@@ -57,36 +57,26 @@ extension ProductViewModel: ProductViewModelAction {
                 }
             }
         }
+    }
+}
+
+extension ProductViewModel {
     
-        
-        
-        
-        
-        
-        
-        // ===========================================================================
-//        guard let url = URL(string: url) else {
-//            viewState = .error(message:"Invalid URL")
-//            return
-//        }
-//        do {
-//            products = try await productRepo.getProduct(for: url)
-//
-//            await self.saveProductsToDB(context: context)
-//
-//            await MainActor.run {
-//                viewState = .load(products: products)
-//            }
-//        } catch {
-//            await MainActor.run {
-//                viewState = .error(message:"Something went wrong, Pls try again")
-//            }
-//        }
-       // ===========================================================================
-        
-        
-        
-        
+    private func getProductsFromDb(context: NSManagedObjectContext) async {
+        //        coreDataRepo = ProductCoreDataRepository(context: context)
+        do {
+            if let products = try await coreDataRepo?.getProductsFromDb() {
+                print("Db data retrieved succcessfully")
+                DispatchQueue.main.async {
+                    self.hasDbData = true
+                    self.viewState = .dbload(dbProducts: products)
+                }
+            }
+        } catch {
+            print("DB fetch Failed")
+            self.viewState = .error(message: "Could not retrieve Db Data")
+            hasDbData = false
+        }
     }
     
     private func saveProductsToDB(context: NSManagedObjectContext) async {
@@ -101,36 +91,29 @@ extension ProductViewModel: ProductViewModelAction {
             self.hasDbData = false
         }
     }
-    
-    private func getProductsFromDb(context: NSManagedObjectContext) async {
-//        coreDataRepo = ProductCoreDataRepository(context: context)
-        do {
-            if let products = try await coreDataRepo?.getProductsFromDb() {
-                
-                print("Db data retrieved succcessfully")
-                DispatchQueue.main.async {
-                    self.hasDbData = true
-                    self.viewState = .dbload(dbProducts: products)
-                }
-            }
-        } catch {
-            print("DB fetch Failed")
-            self.viewState = .error(message: "Could not retrieve Db Data")
-            hasDbData = false
+}
+
+extension ProductViewModel {
+    //TODO: -- Use generic type so both Product and dbProduct type can work
+    var filteredProducts: [Product] {
+        
+        guard !searchText.isEmpty else {
+            return products
+        }
+        return products.filter { product in
+            product.title.lowercased().contains(searchText.lowercased())
         }
     }
     
+//    func getSearchResult() {
+//        self.viewState = .searchload(product: filteredProducts)
+//    }
     
 }
 
 extension ProductViewModel {
-    
+
     func removeDuplicates<T>(category: [T]) -> [String] {
-        
-        //        for item in products {
-        //            print(item, terminator: " ")
-        //        }
-        
         var uniqueCategories: [String] {
             var uniqueCategoriesSet = Set<String>()
             var result = [String]()
@@ -142,8 +125,6 @@ extension ProductViewModel {
             }
             return result
         }
-        
         return uniqueCategories
     }
-    
 }

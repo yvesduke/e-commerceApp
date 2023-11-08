@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProductsHomeUIView: View {
 
-    @State private var searchText: String = ""
     @StateObject var viewModel: ProductViewModel
     @Environment(\.managedObjectContext) var context
 
@@ -17,8 +16,9 @@ struct ProductsHomeUIView: View {
     
         NavigationStack {
             VStack {
-                SearchBar(text: $searchText)
-                    .padding()
+//                SearchBar(text: $viewModel.searchText, viewModel: viewModel)
+//                    .padding()
+//                ProductSearchView()
                 
                 HStack {
                     NavigationLink(destination: FilterUIView()) {
@@ -29,26 +29,35 @@ struct ProductsHomeUIView: View {
                     filterListView()
                 }
                 .padding()
+//                .searchable(text: $viewModel.searchText)
                 
                 HStack {
                     Text("Hot Sales")
                         .font(.title3)
                         .bold()
+//                    Spacer()
+                        .padding(.trailing, 100)
                     Text("See all")
                         .font(.title3)
                         .foregroundColor(Color(.systemGray2))
-                        .padding(.leading, 110)
+//                        .padding(.leading, 110)
+                        .padding(.leading, 100)
+
+//                    Spacer()
                 }
+                .searchable(text: .constant(""))
+//                Spacer()
                 productsListView()
-                
                 HStack {
                     Text("Recently Viewed")
                         .font(.title3)
                         .bold()
+                        .padding(.trailing, 100)
                     Text("See all")
                         .font(.title3)
                         .foregroundColor(Color(.systemGray2))
-                        .padding(.leading, 110)
+                        .padding(.leading, 100)
+//                        .padding(.leading, 110)
                 }
                 productsListView()
 
@@ -56,10 +65,8 @@ struct ProductsHomeUIView: View {
             .task {
                 await viewModel.getProductList(url: ApiEndpoint.products, context: context)
             }
-            
             Spacer()
         }
-        
     }
     
     @ViewBuilder
@@ -82,7 +89,7 @@ struct ProductsHomeUIView: View {
                         
                     }
                 }
-                .frame(width: 330, height: 50)
+//                .frame(width: 330, height: 50)
             } else {
                 Text(NSLocalizedString("loading", comment: ""))
             }
@@ -108,6 +115,8 @@ struct ProductsHomeUIView: View {
             } else {
                 Text(NSLocalizedString("loading from Database", comment: ""))
             }
+//        case .searchload(product: let product):
+//            Text(NSLocalizedString("Searching product items \(product)", comment: ""))
         }
     }
 
@@ -119,7 +128,12 @@ struct ProductsHomeUIView: View {
                 ScrollView(.horizontal) {
                     LazyHStack {
                         ForEach(products) { product in
-                            ProductCellUIView(product: product, dbProduct: nil)
+                            NavigationLink {
+                                ProductDetailUIView(product: product, dbProduct: nil, coupon: .constant(""))
+                            } label: {
+                                ProductCellUIView(product: product, dbProduct: nil)
+                            }
+                            
                         }
                     }
                 }
@@ -133,7 +147,13 @@ struct ProductsHomeUIView: View {
                 ScrollView(.horizontal){
                     LazyHStack {
                         ForEach(dbProducts) { dbproduct in
-                            ProductCellUIView(product: Product.getProducts()[0], dbProduct: dbproduct )
+//                            ProductCellUIView(product: Product.getProducts()[0], dbProduct: dbproduct )
+                            NavigationLink {
+                                ProductDetailUIView(product: nil, dbProduct: dbproduct, coupon: .constant(""))
+                            } label: {
+                                ProductCellUIView(product: nil, dbProduct: dbproduct )
+                            }
+//                            ProductCellUIView(product: nil, dbProduct: dbproduct )
                         }
                     }
                 }
@@ -141,6 +161,8 @@ struct ProductsHomeUIView: View {
             } else {
                 Text(NSLocalizedString("loading from Database", comment: ""))
             }
+//        case .searchload(product: let product):
+//            Text("Dispay Search Recuslt \(product.count)")
         }
     }
     
