@@ -5,7 +5,6 @@
 //  Created by Yves Dukuze on 07/11/2023.
 //
 
-
 import SwiftUI
 
 struct ImageGalleryView: View {
@@ -22,7 +21,6 @@ struct ImageGalleryView: View {
                 mainImageView
                 thumbnailListView
             }
-//            .navigationTitle("Image Gallery")
         }
         
     }
@@ -58,11 +56,4 @@ struct ImageGalleryView: View {
     
     
 }
-
-//struct ImageGalleryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let images = ["image1", "image2", "image3"] // Add your image names here
-//        ImageGalleryView(images: images)
-//    }
-//}
 

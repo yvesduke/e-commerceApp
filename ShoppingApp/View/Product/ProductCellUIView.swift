@@ -23,28 +23,26 @@ struct ProductCellUIView: View {
                         .mask(RoundedRectangle(cornerRadius: 16))
                         .padding(3)
                 } // TODO: -- Add HStack View for the free shipping
+            } else if let img = dbProduct?.thumbnail {
+                if let url = URL(string: img){
+                    ProductAsyncImageView(url: url)
+                        .frame(width: 90, height: 90)
+                        .mask(RoundedRectangle(cornerRadius: 16))
+                        .padding(3)
+                } 
             }
-//            if let url = URL(string: product.thumbnail){
-//                ProductAsyncImageView(url: url)
-//                    .frame(width: 90, height: 90)
-//                    .mask(RoundedRectangle(cornerRadius: 16))
-//                    .padding(3)
-//            } // TODO: -- Add HStack View for the free shipping
+            // TODO: -- Add HStack View for the free shipping
             Divider()
                 .padding(18)
-//            Group {
                 HStack{
-                    Text(product?.title ?? "")
-//                    Text("$\(product?.price)")
-                    Text(""+"\(product?.price ?? 0)")
+                    Text((product?.title ?? dbProduct?.title) ?? "")
+                    Text(""+"\(product?.price ?? Int(dbProduct?.price ?? 0))")
                 }
                 .font(.callout)
-            Text(product?.description ?? "")
+            Text((product?.description ?? dbProduct?.description) ?? "")
                     .font(.caption)
                     .lineLimit(6)
                     .multilineTextAlignment(.center)
-//            }
-//            .padding(1)
         }
         .background(Color(.systemGray6))
         .cornerRadius(9)

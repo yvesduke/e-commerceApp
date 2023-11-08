@@ -14,6 +14,7 @@ protocol ProductViewModelAction: ObservableObject {
 }
 
 final class ProductViewModel {
+    
     private var products: [Product] = []
     private let productRepo: ProductRepositoryContract
     private var coreDataRepo: ProductCoreDataRepository?
@@ -25,16 +26,18 @@ final class ProductViewModel {
     init(repository: ProductRepositoryContract = ProductRepository()) {
         self.productRepo = repository
     }
+    
 }
 
 extension ProductViewModel: ProductViewModelAction {
     
+    // Get product from the API func
     func getProductList(url: String, context: NSManagedObjectContext) async {
         
         await getProductsFromDb(context: context)
         
         if hasDbData {
-            print("============> We have database")
+            print("============> We have database No need for an API call")
         } else {
             // Remote Data
             guard let url = URL(string: url) else {
@@ -62,23 +65,33 @@ extension ProductViewModel: ProductViewModelAction {
 
 extension ProductViewModel {
     
+    // Get Data from Database func
     private func getProductsFromDb(context: NSManagedObjectContext) async {
         //        coreDataRepo = ProductCoreDataRepository(context: context)
         do {
-            if let products = try await coreDataRepo?.getProductsFromDb() {
-                print("Db data retrieved succcessfully")
-                DispatchQueue.main.async {
+            if let dbproducts = try await coreDataRepo?.getProductsFromDb() {
+                print("================================ Checks if image data are being stored and retrieved correctly by coredata context ================")
+                print("Db data retrieved succcessfully \(String(describing: dbproducts[1].images))")
+                print("=======================================================================================")
+//                DispatchQueue.main.async {
+//                    self.hasDbData = true
+//                    self.viewState = .dbload(dbProducts: dbproducts)
+//                }
+                await MainActor.run {
                     self.hasDbData = true
-                    self.viewState = .dbload(dbProducts: products)
+                    self.viewState = .dbload(dbProducts: dbproducts)
                 }
             }
         } catch {
-            print("DB fetch Failed")
-            self.viewState = .error(message: "Could not retrieve Db Data")
-            hasDbData = false
+            await MainActor.run {
+                print("DB fetch Failed")
+                self.viewState = .error(message: "Could not retrieve Db Data")
+                hasDbData = false
+            }
         }
     }
     
+    // Save Data to the Database func
     private func saveProductsToDB(context: NSManagedObjectContext) async {
         coreDataRepo = ProductCoreDataRepository(context: context)
         do {
@@ -94,6 +107,7 @@ extension ProductViewModel {
 }
 
 extension ProductViewModel {
+    
     //TODO: -- Use generic type so both Product and dbProduct type can work
     var filteredProducts: [Product] {
         
@@ -104,10 +118,6 @@ extension ProductViewModel {
             product.title.lowercased().contains(searchText.lowercased())
         }
     }
-    
-//    func getSearchResult() {
-//        self.viewState = .searchload(product: filteredProducts)
-//    }
     
 }
 
