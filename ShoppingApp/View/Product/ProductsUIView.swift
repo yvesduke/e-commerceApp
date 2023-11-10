@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct ProductsUIView: View {
+    
+    enum Tab {
+        case home
+        case cart
+        case favorites
+        case profile
+    }
+    
+    @State private var selection: Tab = .home
 
     var body: some View {
 
@@ -21,14 +30,17 @@ struct ProductsUIView: View {
             .toolbarBackground(Color(red: 0.66, green: 0.61, blue: 0.99), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarColorScheme(.dark, for: .tabBar)
+            .tag(Tab.home)
             
-            ProductsCartUIView().tabItem{
+            ProductsCartUIView().tabItem {
                 Image(systemName: "cart")
                 Text(" Cart")
+//                Label("Cart",systemImage: cartItems.count == 0 ? "cart" : "cart.badge.plus")
             }
             .toolbarBackground(Color(red: 0.66, green: 0.61, blue: 0.99), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarColorScheme(.dark, for: .tabBar)
+            .tag(Tab.cart)
             
             ProductsFavoritesUIView().tabItem {
                 Image(systemName: "heart")
@@ -37,6 +49,7 @@ struct ProductsUIView: View {
             .toolbarBackground(Color(red: 0.66, green: 0.61, blue: 0.99), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarColorScheme(.dark, for: .tabBar)
+            .tag(Tab.favorites)
             
             ProductsProfileUIView().tabItem {
                 Image(systemName: "person")
@@ -45,6 +58,7 @@ struct ProductsUIView: View {
             .toolbarBackground(Color(red: 0.66, green: 0.61, blue: 0.99), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarColorScheme(.dark, for: .tabBar)
+            .tag(Tab.profile)
         }
         .toolbarBackground(Color(red: 0.66, green: 0.61, blue: 0.99), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)

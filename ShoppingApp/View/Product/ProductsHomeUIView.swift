@@ -107,8 +107,6 @@ struct ProductsHomeUIView: View {
             } else {
                 Text(NSLocalizedString("loading from Database", comment: ""))
             }
-//        case .searchload(product: let product):
-//            Text(NSLocalizedString("Searching product items \(product)", comment: ""))
         }
     }
 
@@ -125,7 +123,6 @@ struct ProductsHomeUIView: View {
                             } label: {
                                 ProductCellUIView(product: product, dbProduct: nil)
                             }
-                            
                         }
                     }
                 }
@@ -150,8 +147,6 @@ struct ProductsHomeUIView: View {
             } else {
                 Text(NSLocalizedString("loading from Database", comment: ""))
             }
-//        case .searchload(product: let product):
-//            Text("Dispay Search Recuslt \(product.count)")
         }
     }
     

@@ -11,6 +11,9 @@ import CoreData
 
 protocol ProductViewModelAction: ObservableObject {
     func getProductList(url: String, context: NSManagedObjectContext) async
+    func addToFavorites(product: ProductEntity) async throws
+    func removeToFavorites(product: ProductEntity) async throws
+    func getFavoritesList(product: ProductEntity) async throws
 }
 
 final class ProductViewModel {
@@ -60,6 +63,20 @@ extension ProductViewModel: ProductViewModelAction {
             }
         }
     }
+    
+    
+    func addToFavorites(product: ProductEntity) async throws {
+        
+    }
+    
+    func removeToFavorites(product: ProductEntity) async throws {
+        
+    }
+    
+    func getFavoritesList(product: ProductEntity) async throws {
+        
+    }
+    
 }
 
 extension ProductViewModel {

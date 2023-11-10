@@ -7,6 +7,11 @@
 
 import Foundation
 
+var cartItems: [Product] = []
+
+//struct CartItem<T> {
+//    var cartItems: [T] = []
+//}
 
 struct OnlineStore: Decodable {
     let products: [Product]
