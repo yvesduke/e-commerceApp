@@ -119,7 +119,7 @@ struct ProductsHomeUIView: View {
                     LazyHStack {
                         ForEach(products) { product in
                             NavigationLink {
-                                ProductDetailUIView(product: product, dbProduct: nil, coupon: .constant(""))
+                                ProductDetailUIView(product: product, dbProduct: nil, coupon: .constant(""), productVm: ProductViewModel())
                             } label: {
                                 ProductCellUIView(product: product, dbProduct: nil)
                             }
@@ -137,7 +137,7 @@ struct ProductsHomeUIView: View {
                     LazyHStack {
                         ForEach(dbProducts) { dbproduct in
                             NavigationLink {
-                                ProductDetailUIView(product: nil, dbProduct: dbproduct, coupon: .constant(""))
+                                ProductDetailUIView(product: nil, dbProduct: dbproduct, coupon: .constant(""), productVm: ProductViewModel())
                             } label: {
                                 ProductCellUIView(product: nil, dbProduct: dbproduct )
                             }

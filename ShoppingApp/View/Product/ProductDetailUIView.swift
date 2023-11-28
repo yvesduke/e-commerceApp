@@ -12,6 +12,10 @@ struct ProductDetailUIView: View {
     let product: Product?
     let dbProduct: ProductEntity?
     @Binding var coupon: String
+    @State private var isFavorites = false
+    @State private var FavColor: Color = .purple
+    @ObservedObject private var cartVm = CartViewModel()
+    @StateObject var productVm: ProductViewModel
     
     
     var body: some View {
@@ -34,9 +38,40 @@ struct ProductDetailUIView: View {
                             .foregroundColor(.white).background(Color.green).padding(6)
                             .cornerRadius(9)
                         
-                        Image(systemName: "heart")
+                        Image(systemName: "heart.fill")
                             .padding(.leading, 100)
+                            .foregroundColor(FavColor)
+                            .onTapGesture {
+                                print("Added to Fav or Removed to Fav")
+                                self.isFavorites.toggle()
+                                
+                                if isFavorites {
+                                    self.FavColor = .red
+                                    if let dbProduct = dbProduct {
+                                        Task {
+                                            do {
+                                                try await productVm.addToFavorites(product: dbProduct)
+                                            } catch {
+                                                print("Error adding to favorites: \(error)")
+                                            }
+                                        }
+                                    } else if let product = product {
+//                                        Task {
+//                                            do {
+//                                                try await productVm.addToFavorites(product: product as)
+//
+//                                            } catch {
+//                                                print("Error adding to favorites: \(error)")
+//                                            }
+//                                        }
+                                        print("Handle Api response Products")
+                                    }
+                                } else {
+                                    self.FavColor = .purple
+                                }
+                            }
                     }
+                    
                     Text(product?.title ?? dbProduct?.title ?? "").font(.title).foregroundColor(.purple)
                     Text(product?.description ?? dbProduct?.descriptions ?? "")
                         .font(.callout)
@@ -89,6 +124,7 @@ struct ProductDetailUIView: View {
                             //Decrease cart amount button
                             Button(action: {
                                 print("Decrease Cart amount")
+                                cartVm.Qty -= 1
                             }) {
                                 Text("-")
                                     .frame(width: 6, height: 6)
@@ -98,16 +134,17 @@ struct ProductDetailUIView: View {
                             .background(Color.white.opacity(0.9))
                             .cornerRadius(6)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 12)
+                                RoundedRectangle(cornerRadius: 9)
                                     .stroke(Color.green, lineWidth: 3)
                             )
                             
                             // Cart amount value
-                            Text("1")
+                            Text("\(cartVm.Qty)").font(.caption)
                             
                             //Increase cart amount button
                             Button(action: {
                                 print("Increase Cart amount")
+                                cartVm.Qty += 1
                             }) {
                                 Text("+")
                                     .frame(width: 6, height: 6)
@@ -116,7 +153,7 @@ struct ProductDetailUIView: View {
                             .background(Color.green.opacity(0.9))
                             .cornerRadius(6)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 12)
+                                RoundedRectangle(cornerRadius: 9)
                                     .stroke(Color.green, lineWidth: 3)
                             )
                             
@@ -154,6 +191,6 @@ struct ProductDetailUIView: View {
 
 struct ProductDetailUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailUIView(product: nil, dbProduct: nil, coupon: .constant(""))
+        ProductDetailUIView(product: nil, dbProduct: nil, coupon: .constant(""), productVm: ProductViewModel())
     }
 }

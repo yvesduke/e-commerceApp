@@ -13,12 +13,13 @@ protocol ProductViewModelAction: ObservableObject {
     func getProductList(url: String, context: NSManagedObjectContext) async
     func addToFavorites(product: ProductEntity) async throws
     func removeToFavorites(product: ProductEntity) async throws
-    func getFavoritesList(product: ProductEntity) async throws
+//    func getFavoritesList(product: ProductEntity) async throws
 }
 
 final class ProductViewModel {
     
     private var products: [Product] = []
+    var favorites: [ProductEntity] = []
     private let productRepo: ProductRepositoryContract
     private var coreDataRepo: ProductCoreDataRepository?
     private var hasDbData: Bool = false
@@ -39,7 +40,6 @@ extension ProductViewModel: ProductViewModelAction {
         await getProductsFromDb(context: context)
         
         if hasDbData {
-            print("============> We have database No need for an API call")
         } else {
             // Remote Data
             guard let url = URL(string: url) else {
@@ -49,6 +49,7 @@ extension ProductViewModel: ProductViewModelAction {
             do {
                 products = try await productRepo.getProduct(for: url)
                 
+                // clear the database first before saving a new record
                 await saveProductsToDB(context: context)
                 
                 await MainActor.run {
@@ -64,17 +65,43 @@ extension ProductViewModel: ProductViewModelAction {
         }
     }
     
+    private func deleteProductsFromDb() {
+        
+        
+        
+    }
     
     func addToFavorites(product: ProductEntity) async throws {
-        
+        do {
+            try  await coreDataRepo?.saveFavoritesToDb(productId: Int(bitPattern: product.id), isFavorite: "true")
+        } catch {
+            await MainActor.run {
+                viewState = .error(message: "Could not add product to favorites")
+            }
+        }
     }
     
     func removeToFavorites(product: ProductEntity) async throws {
-        
+        do {
+            try await coreDataRepo?.saveFavoritesToDb(productId: Int(bitPattern: product.id), isFavorite: "false")
+        } catch {
+            await MainActor.run {
+                viewState = .error(message: "Could not remove product from favorites")
+            }
+        }
     }
     
-    func getFavoritesList(product: ProductEntity) async throws {
-        
+    func getFavoritesList() async throws {
+        do {
+            if let favProducts = try await coreDataRepo?.getFavoritesFromDb(){
+                await MainActor.run {
+//                    self.viewState = .dbload(dbProducts: favProducts)
+                    self.favorites = favProducts
+                }
+            }
+        } catch {
+            print("Couldn't load Favorites products")
+        }
     }
     
 }
@@ -99,20 +126,23 @@ extension ProductViewModel {
             }
         }
     }
-    
-    // Save Data to the Database func
     private func saveProductsToDB(context: NSManagedObjectContext) async {
         coreDataRepo = ProductCoreDataRepository(context: context)
-        do {
-            try await coreDataRepo?.saveProductsToDb(products: products)
-            print("Db Saved Successfully")
-            self.hasDbData = true
-        }catch{
-            print("Failed to save data to Db")
-            self.viewState = .error(message:"Could not save data to Db")
-            self.hasDbData = false
-        }
+            coreDataRepo?.saveProductsToDb(products: products, completion: { res in
+                switch(res) {
+                case .success :
+                    print("Db Saved Successfully")
+                    self.hasDbData = true
+                case .failure:
+                    print("Failed to save data to Db")
+                    self.viewState = .error(message:"Could not save data to Db")
+                    self.hasDbData = false
+                }
+            })
     }
+    
+    
+    
 }
 
 extension ProductViewModel {

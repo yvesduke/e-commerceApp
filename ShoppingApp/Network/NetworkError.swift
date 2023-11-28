@@ -12,6 +12,9 @@ enum NetworkError: Error {
     case parsingError
     case apiError
     case dataNotFound
+    case loginError
+    case singUpError
+    case passwordResetError
 }
 
 extension NetworkError: LocalizedError {
@@ -25,6 +28,12 @@ extension NetworkError: LocalizedError {
             return NSLocalizedString("Failed to get data from API", comment: "dataNotFound")
         case .apiError:
             return NSLocalizedString("apiError", comment: "apiError")
+        case .loginError:
+            return NSLocalizedString("Failed to login", comment: "LoginError")
+        case .singUpError:
+            return NSLocalizedString("Failed to signup", comment: "SignupError")
+        case .passwordResetError:
+            return NSLocalizedString("Failed to reset password", comment: "PasswordResetError")
         }
     }
 }

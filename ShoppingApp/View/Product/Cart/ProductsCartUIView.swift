@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ProductsCartUIView: View {
     
-    //    @EnvironmentObject var cartItems: CartViewModel
     @State var totalPrice = 0
+    @ObservedObject var cartVm: CartViewModel
     
     var body: some View {
         VStack {
@@ -27,7 +27,7 @@ struct ProductsCartUIView: View {
                             Text("$\(cartItem.price)")
                         }
                         Spacer()
-                        Text("Qty: \(cartItems.count)")
+                        Text("Qty: \(cartVm.Qty)")
                     }
 
                 }.onDelete {indexSet in
@@ -71,13 +71,6 @@ struct ProductsCartUIView: View {
         }.onAppear(perform: self.calculateTotalPrice)
         
     }
-    
-//    func calculateTotalPrice() {
-//        totalPrice = 0
-//        cartItems.forEach { item in
-//            totalPrice += item.price
-//        }
-//    }
     func calculateTotalPrice() {
         totalPrice = 0
         for i in 0..<cartItems.count {
@@ -89,6 +82,6 @@ struct ProductsCartUIView: View {
 
 struct ProductsCartUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductsCartUIView()
+        ProductsCartUIView(cartVm: CartViewModel())
     }
 }

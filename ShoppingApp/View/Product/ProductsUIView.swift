@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ProductsUIView: View {
     
-    enum Tab {
+    @StateObject private var productVm = ProductViewModel()
+    @StateObject private var cartVm = CartViewModel()
+    
+    
+    enum Tab: Int {
         case home
         case cart
         case favorites
@@ -22,7 +26,7 @@ struct ProductsUIView: View {
 
         TabView {
             NavigationStack {
-                ProductsHomeUIView(viewModel: ProductViewModel())
+                ProductsHomeUIView(viewModel: productVm)
             }
             .tabItem {
                 Label("Products", systemImage: "list.bullet")
@@ -32,7 +36,7 @@ struct ProductsUIView: View {
             .toolbarColorScheme(.dark, for: .tabBar)
             .tag(Tab.home)
             
-            ProductsCartUIView().tabItem {
+            ProductsCartUIView(cartVm: cartVm).tabItem {
                 Image(systemName: "cart")
                 Text(" Cart")
 //                Label("Cart",systemImage: cartItems.count == 0 ? "cart" : "cart.badge.plus")
@@ -42,7 +46,7 @@ struct ProductsUIView: View {
             .toolbarColorScheme(.dark, for: .tabBar)
             .tag(Tab.cart)
             
-            ProductsFavoritesUIView().tabItem {
+            ProductsFavoritesUIView(viewModel: productVm).tabItem {
                 Image(systemName: "heart")
                 Text("Favorites")
             }

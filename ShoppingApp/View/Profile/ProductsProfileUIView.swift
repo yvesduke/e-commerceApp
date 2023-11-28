@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct ProductsProfileUIView: View {
+    
     var body: some View {
-        Text("User Profile!")
+        
+        VStack {
+        }
     }
 }
+
 
 struct ProductsProfileUIView_Previews: PreviewProvider {
     static var previews: some View {

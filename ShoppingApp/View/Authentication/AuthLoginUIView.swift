@@ -45,9 +45,7 @@ struct AuthLoginUIView: View {
                     }.padding()
                     
                     Button(action: {
-                        print("Login Button Pressed")
-                        
-                        //
+//                        print("Login Button Pressed")
                         vm.loginUser(email: email, password: password)
                         
                     }) {

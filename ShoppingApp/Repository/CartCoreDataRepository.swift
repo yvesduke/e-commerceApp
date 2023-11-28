@@ -16,7 +16,7 @@ class CartCoreDataRepository {
         self.context = context
     }
     
-    func saveProductsToDb(products: [Product]) async throws {
+    func saveCartToDb(products: [Product]) async throws {
         products.forEach { product in
             let entity = CartEntity(context: context)
             entity.id = Int64(product.id)
@@ -39,11 +39,14 @@ class CartCoreDataRepository {
         }
     }
     
-    func getProductsFromDb() async throws -> [CartEntity] {
+    func getCartFromDb() async throws -> [CartEntity] {
         let fetchRequest: NSFetchRequest<CartEntity>
         fetchRequest = CartEntity.fetchRequest()
         let products = try context.fetch(fetchRequest)
         return products
+    }
+    
+    func removeCartFromDb(at offsets: IndexSet) async throws {
     }
     
 }

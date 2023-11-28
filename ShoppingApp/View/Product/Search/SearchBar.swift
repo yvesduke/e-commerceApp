@@ -35,7 +35,7 @@ struct SearchBar: View {
                 List {
                     ForEach(viewModel.filteredProducts) { product in
                         NavigationLink {
-                            ProductDetailUIView(product: product, dbProduct: nil, coupon: .constant(""))
+                            ProductDetailUIView(product: product, dbProduct: nil, coupon: .constant(""), productVm: ProductViewModel())
                         } label: {
                             Text(product.title)
                         }
