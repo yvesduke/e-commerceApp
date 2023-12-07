@@ -16,16 +16,15 @@ class CartCoreDataRepository {
         self.context = context
     }
     
-    func saveCartToDb(products: [Product]) async throws {
+    func saveFavoritesToDb(products: [Product]) async throws {
         products.forEach { product in
-            let entity = CartEntity(context: context)
+            let entity = FavoritesEntity(context: context)
             entity.id = Int64(product.id)
             entity.title = product.title
             entity.descriptions = product.description
             entity.price = Int16(product.price)
             entity.discountPercentage = product.discountPercentage
             entity.rating = product.rating
-            entity.stock = Int16(product.stock)
             entity.brand = product.brand
             entity.category = product.category
             entity.thumbnail = product.thumbnail
@@ -39,9 +38,9 @@ class CartCoreDataRepository {
         }
     }
     
-    func getCartFromDb() async throws -> [CartEntity] {
-        let fetchRequest: NSFetchRequest<CartEntity>
-        fetchRequest = CartEntity.fetchRequest()
+    func getFavoritesFromDb() async throws -> [FavoritesEntity] {
+        let fetchRequest: NSFetchRequest<FavoritesEntity>
+        fetchRequest = FavoritesEntity.fetchRequest()
         let products = try context.fetch(fetchRequest)
         return products
     }

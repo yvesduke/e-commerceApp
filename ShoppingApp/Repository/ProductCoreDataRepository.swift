@@ -111,7 +111,7 @@ class ProductCoreDataRepository {
                 
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %lld", Int64(productId))
-        
+//        fetchRequest.predicate = NSPredicate(format: "(id = %@)", Int64(productId))
         do {
             let results = try context.fetch(fetchRequest)
             if let UpdateFavorites = results.first {

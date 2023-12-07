@@ -74,9 +74,11 @@ extension ProductViewModel: ProductViewModelAction {
     func addToFavorites(product: ProductEntity) async throws {
         do {
             try  await coreDataRepo?.saveFavoritesToDb(productId: Int(bitPattern: product.id), isFavorite: "true")
+            print("Added to favorites ....")
         } catch {
             await MainActor.run {
                 viewState = .error(message: "Could not add product to favorites")
+                print("Could not add to favorites ....\(error) ....")
             }
         }
     }
